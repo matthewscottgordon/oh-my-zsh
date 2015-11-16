@@ -1,6 +1,6 @@
 function git_prompt_info() {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-  echo "$ZSH_THEME_GIT_PROMPT_PREFIX$(parse_git_dirty)$(git_prompt_status)$(current_branch)$fg[white]$ZSH_THEME_GIT_PROMPT_SUFFIX"
+  echo "$ZSH_THEME_GIT_PROMPT_PREFIX$(parse_git_dirty)$(git_prompt_status)$(current_branch)%{$fg[white]%}$ZSH_THEME_GIT_PROMPT_SUFFIX"
 }
 
 function get_pwd() {
@@ -9,14 +9,14 @@ function get_pwd() {
 
 function precmd() {
 print -rP '
-$fg[blue]%n$fg[white]@$fg[yellow]%m$fg[white]:$fg[cyan]$(get_pwd)$(git_prompt_info)'
+%{$fg[blue]%}%n%{$fg[white]%}@%{$fg[yellow]%}%m%{$fg[white]%}:%{$fg[cyan]%}$(get_pwd)$(git_prompt_info)'
 }
 
 PROMPT='%{$reset_color%}→ '
 
-ZSH_THEME_GIT_PROMPT_PREFIX="$fg[white]|"
-ZSH_THEME_GIT_PROMPT_SUFFIX="$fg[white]"
-ZSH_THEME_GIT_PROMPT_DIRTY="$fg[yellow]"
-ZSH_THEME_GIT_PROMPT_UNTRACKED="$fg[red]"
-ZSH_THEME_GIT_PROMPT_MODIFIED="$fg[red]"
-ZSH_THEME_GIT_PROMPT_CLEAN="$fg[green]"
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[white]%}|"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$fg[white]%}"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[yellow]%}"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[red]%}"
+ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[red]%}"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%}"
